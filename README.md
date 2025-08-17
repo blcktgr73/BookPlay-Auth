@@ -94,6 +94,9 @@ keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -sto
 2. 파일을 **`app/`** 폴더에 저장
 3. Android Studio에서 **Sync Project with Gradle Files**
 
+> ⚠️ **보안 주의**: `google-services.json` 파일은 `.gitignore`에 포함되어 GitHub에 업로드되지 않습니다. 
+> 프로젝트를 클론한 후 직접 Firebase Console에서 다운로드하여 추가해야 합니다.
+
 ### 5️⃣ Firebase Authentication 활성화
 
 1. Firebase Console → **Authentication** → **시작하기**
