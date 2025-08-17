@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BookPlay</string>
+    <string name="app_title">BookPlay</string>
+    <string name="app_logo">앱 로고</string>
+    <string name="login_subtitle">Google 계정으로 로그인하여\n독서의 즐거움을 시작하세요</string>
+    <string name="logout">로그아웃</string>
+    <string name="login_success">로그인 성공!</string>
+    <string name="login_failed">로그인에 실패했습니다</string>
+    <string name="logout_success">로그아웃 되었습니다</string>
+    <string name="logout_failed">로그아웃에 실패했습니다</string>
+    <string name="welcome_message">환영합니다, %s님!</string>
+    <string name="loading">로딩 중...</string>
+    
+    <!-- Firebase에서 자동 생성될 Web Client ID를 위한 플레이스홀더 -->
+    <!-- google-services.json 파일이 추가되면 자동으로 생성됩니다 -->
+    <string name="default_web_client_id" translatable="false">your_web_client_id_here</string>
+</resources>

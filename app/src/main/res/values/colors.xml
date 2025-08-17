@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Primary Colors -->
+    <color name="primary_color">#4285F4</color>
+    <color name="primary_dark">#3367D6</color>
+    <color name="secondary_color">#6C757D</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#212529</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="text_tertiary">#ADB5BD</color>
+    
+    <!-- Background Colors -->
+    <color name="background_gradient_start">#667EEA</color>
+    <color name="background_gradient_end">#764BA2</color>
+    
+    <!-- Alpha Colors -->
+    <color name="white_alpha_80">#CCFFFFFF</color>
+    <color name="black_alpha_50">#80000000</color>
+</resources>
