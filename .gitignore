@@ -50,8 +50,15 @@ captures/
 
 # Keystore files
 # Uncomment the following lines if you do not want to check your keystore files in.
-#*.jks
-#*.keystore
+*.jks
+*.keystore
+key.properties
+keystore.properties
+release-key.keystore
+app-release.aab
+
+# Signing configs
+signing.properties
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -59,6 +66,12 @@ captures/
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
+GoogleService-Info.plist
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+.firebase/
 
 # Freeline
 freeline.py
@@ -102,3 +115,60 @@ Desktop.ini
 .vscode/
 *.swp
 *.swo
+
+# API Keys and Secrets
+secrets.properties
+api-keys.properties
+config.properties
+.env
+.env.local
+.env.development
+.env.production
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Test results
+test-results/
+coverage/
+jacoco/
+
+# Android specific
+google-services-debug.json
+google-services-release.json
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
+
+# NDK
+obj/
+*.so
+
+# Realm
+*.realm
+*.realm.lock
+*.realm.management/
+
+# Unity
+[Uu]nityGenerated/
+[Bb]uilds/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+Assets/AssetStoreTools*
+
+# Memory dumps
+*.hprof
+*.dmp
+
+# Crashlytics
+crashlytics.properties
+fabric.properties

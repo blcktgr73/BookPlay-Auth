@@ -223,6 +223,34 @@ implementation("com.github.bumptech.glide:glide:4.16.0")
 
 이 프로젝트는 MIT 라이선스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
 
+## 🔗 **GitHub 업로드 방법**
+
+### 1️⃣ GitHub 저장소 생성
+1. [GitHub](https://github.com/) 접속 → **New repository**
+2. **Repository name**: `BookPlayTest`
+3. **Description**: `Firebase Auth를 활용한 Android 독서 관리 앱`
+4. **Public** 또는 **Private** 선택
+5. ⚠️ **"Add a README file"** 체크 해제 (이미 있음)
+
+### 2️⃣ 로컬과 GitHub 연결
+```bash
+# GitHub 저장소와 연결 (your-username을 실제 사용자명으로 변경)
+git remote add origin https://github.com/your-username/BookPlayTest.git
+
+# 기본 브랜치를 main으로 설정
+git branch -M main
+
+# GitHub에 푸시
+git push -u origin main
+```
+
+### 3️⃣ 협업자를 위한 안내
+프로젝트를 클론한 다른 개발자는:
+1. 저장소 클론 후
+2. **Firebase Console에서 `google-services.json` 직접 다운로드**
+3. **`app/` 폴더에 파일 추가**
+4. 앱 빌드 및 실행
+
 ## 🤝 기여하기
 
 1. Fork the Project
