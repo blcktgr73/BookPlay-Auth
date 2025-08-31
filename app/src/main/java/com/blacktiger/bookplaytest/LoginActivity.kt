@@ -10,28 +10,21 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.blacktiger.bookplaytest.databinding.ActivityMainBinding
-import com.bumptech.glide.Glide
+import com.blacktiger.bookplaytest.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityLoginBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var googleSignInClient: GoogleSignInClient
 
     companion object {
-        private const val TAG = "MainActivity"
+        private const val TAG = "LoginActivity"
     }
 
-    // Google 로그인 결과를 처리하는 ActivityResultLauncher
     private val googleSignInLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -51,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -60,50 +53,20 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Firebase Auth 초기화
-        auth = Firebase.auth
-
-        // Google 로그인 설정
-        configureGoogleSignIn()
-
-        // UI 이벤트 설정
+        auth = FirebaseAuth.getInstance()
+        
         setupClickListeners()
-
-        // 현재 로그인 상태 확인
-        checkCurrentUser()
-    }
-
-    private fun configureGoogleSignIn() {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        googleSignInClient = GoogleSignIn.getClient(this, gso)
     }
 
     private fun setupClickListeners() {
         binding.googleSignInButton.setOnClickListener {
             signInWithGoogle()
         }
-
-        binding.logoutButton.setOnClickListener {
-            signOut()
-        }
-    }
-
-    private fun checkCurrentUser() {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            showUserSection(currentUser)
-        } else {
-            showLoginSection()
-        }
     }
 
     private fun signInWithGoogle() {
         showLoginProgress()
-        val signInIntent = googleSignInClient.signInIntent
+        val signInIntent = AuthManager.getGoogleSignInClient(this).signInIntent
         googleSignInLauncher.launch(signInIntent)
     }
 
@@ -114,53 +77,20 @@ class MainActivity : AppCompatActivity() {
                 hideLoginProgress()
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
-                    val user = auth.currentUser
                     showSuccess("로그인 성공!")
-                    user?.let { showUserSection(it) }
+                    navigateToBookList()
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                     showError("Firebase 인증에 실패했습니다: ${task.exception?.message}")
-                    showLoginSection()
                 }
             }
     }
 
-    private fun signOut() {
-        showLogoutProgress()
-        
-        // Firebase 로그아웃
-        auth.signOut()
-        
-        // Google 로그아웃
-        googleSignInClient.signOut().addOnCompleteListener(this) {
-            hideLogoutProgress()
-            showSuccess("로그아웃 되었습니다")
-            showLoginSection()
-        }
-    }
-
-    private fun showUserSection(user: com.google.firebase.auth.FirebaseUser) {
-        binding.loginSection.visibility = View.GONE
-        binding.userSection.visibility = View.VISIBLE
-
-        // 사용자 정보 표시
-        binding.userNameTextView.text = user.displayName ?: "사용자"
-        binding.userEmailTextView.text = user.email
-        binding.userIdTextView.text = "UID: ${user.uid}"
-
-        // 프로필 이미지 로드
-        user.photoUrl?.let { photoUrl ->
-            Glide.with(this)
-                .load(photoUrl)
-                .placeholder(R.drawable.profile_default)
-                .error(R.drawable.profile_default)
-                .into(binding.profileImageView)
-        }
-    }
-
-    private fun showLoginSection() {
-        binding.loginSection.visibility = View.VISIBLE
-        binding.userSection.visibility = View.GONE
+    private fun navigateToBookList() {
+        val intent = Intent(this, BookListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 
     private fun showLoginProgress() {
@@ -171,16 +101,6 @@ class MainActivity : AppCompatActivity() {
     private fun hideLoginProgress() {
         binding.googleSignInButton.isEnabled = true
         binding.loginProgressBar.visibility = View.GONE
-    }
-
-    private fun showLogoutProgress() {
-        binding.logoutButton.isEnabled = false
-        binding.logoutProgressBar.visibility = View.VISIBLE
-    }
-
-    private fun hideLogoutProgress() {
-        binding.logoutButton.isEnabled = true
-        binding.logoutProgressBar.visibility = View.GONE
     }
 
     private fun showSuccess(message: String) {

@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@color/teal_background"
     tools:context=".MainActivity">
 
     <!-- 로그인 섹션 -->
@@ -25,7 +25,7 @@
             android:layout_height="120dp"
             android:layout_marginBottom="32dp"
             android:contentDescription="@string/app_logo"
-            android:src="@drawable/ic_book_logo"
+            android:src="@drawable/app_logo"
             app:layout_constraintBottom_toTopOf="@+id/titleTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +119,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_marginBottom="16dp"
-                    android:src="@drawable/ic_default_profile"
+                    android:src="@drawable/profile_default"
                     app:civ_border_color="@color/primary_color"
                     app:civ_border_width="3dp"
                     app:layout_constraintBottom_toTopOf="@+id/userNameTextView"

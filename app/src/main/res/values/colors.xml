@@ -16,8 +16,13 @@
     <!-- Background Colors -->
     <color name="background_gradient_start">#667EEA</color>
     <color name="background_gradient_end">#764BA2</color>
+    <color name="teal_background">#198592</color>
+    <color name="teal_dark">#00695C</color>
     
     <!-- Alpha Colors -->
     <color name="white_alpha_80">#CCFFFFFF</color>
     <color name="black_alpha_50">#80000000</color>
+    
+    <!-- UI Colors -->
+    <color name="divider_color">#E9ECEF</color>
 </resources>

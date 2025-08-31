@@ -12,7 +12,14 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <!-- Enable edge-to-edge -->
         <item name="android:windowLightStatusBar">false</item>
+        <!-- Background color -->
+        <item name="android:windowBackground">@color/teal_background</item>
     </style>
 
     <style name="Theme.BookPlayTest" parent="Base.Theme.BookPlayTest" />
+    
+    <style name="Theme.BookPlayTest.NoActionBar" parent="Theme.BookPlayTest">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
